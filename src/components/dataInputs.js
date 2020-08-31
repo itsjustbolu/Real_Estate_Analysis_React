@@ -7,7 +7,7 @@ const DataInputs = () => {
   return (
     <div>
       <Form>
-        <p>Property Location</p>
+        <h3>Property Location</h3>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Property Address</Form.Label>
           <Form.Control type="text" placeholder="Enter address" />
@@ -36,7 +36,7 @@ const DataInputs = () => {
           </Form.Group>
         </Form.Row>
 
-        <p>Property Details</p>
+        <h3>Property Details</h3>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>Bedrooms</Form.Label>
@@ -70,7 +70,7 @@ const DataInputs = () => {
             <Form.Control type="number" />
           </Form.Group>
         </Form.Row>
-        
+
         <Form.Row>
           <Form.Group as={Col} controlId="formGridCity">
             <Form.Label>Year Built</Form.Label>
@@ -88,22 +88,81 @@ const DataInputs = () => {
               <option>Townhome</option>
               <option>Condo</option>
               <option>Land</option>
-
             </Form.Control>
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridCity">
-            <Form.Label>Price</Form.Label>
+            <Form.Label>Asking Price</Form.Label>
             <Form.Control type="number" />
           </Form.Group>
         </Form.Row>
 
-        <p>Financials</p>
-        
+        <h3>Financials</h3>
+        <p>Sale and Rental Evaluation</p>
 
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Purchase Price</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Rehab Cost</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Downpayment %</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Rehab Interest Rate %</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Rehab Loan Term</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Post Rehab Price</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Rehab Duration</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Row>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Monthly Rent</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Taxes (annual)</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Insurance (annual)</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>HOA (annual)</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+        </Form.Row>
 
         <Button variant="primary" type="submit">
-          Submit
+          Analyze Deal
         </Button>
       </Form>
     </div>

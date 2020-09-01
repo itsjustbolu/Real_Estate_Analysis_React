@@ -15,6 +15,7 @@ function App() {
           <Col>
             <Title />
             <DataInputs />
+            
           </Col>
         </Row>
       </Container>

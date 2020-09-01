@@ -161,7 +161,7 @@ const DataInputs = () => {
           </Form.Group>
         </Form.Row>
 
-        <Button variant="primary" type="submit">
+        <Button  onClick={AnalyzeDeal} variant="primary" type="submit">
           Analyze Deal
         </Button>
       </Form>
@@ -169,4 +169,16 @@ const DataInputs = () => {
   );
 };
 
+
+function AnalyzeDeal(e) {
+    e.preventDefault();
+    console.log("link was clicked")
+  
+
+    // Define Variables 
+
+}
+
 export default DataInputs;
+
+

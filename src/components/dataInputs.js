@@ -215,8 +215,8 @@ function AnalyzeDeal(e) {
   console.log("link was clicked");
   
   // Calculations: Sale and Rental
-  var d = new Date()
-  var homeAge = d.getFullYear - propBuilt
+  var d = Number(new Date().getFullYear)
+  var homeAge = d - propBuilt
   var propLotAcres = (propLotSqFt / 43560).toFixed(2)
   var totalInvestment = purchasePrice + rehabCost
   var equityGenerated = postRehabPrice - totalInvestment
@@ -267,18 +267,20 @@ function AnalyzeDeal(e) {
   var propBlurb2 = " The asking price for this property is " + propAskingPrice + "."
 
   var blurb1 = document.createTextNode(propBlurb1)
+  document.createElement("br")
   var blurb2 = document.createTextNode(propBlurb2)
+  document.createElement("br")
 
   blurbDiv.appendChild(blurb1)
-  document.createElement("br")
+  blurbDiv.appendChild(document.createElement("br"))
   blurbDiv.appendChild(blurb2)
-  document.createElement("br")
+  
 
   var metricsDiv = document.getElementById("metrics")
   
   var metricsblurb1 = "Purchase price: " + purchasePrice + ". Rehab Cost: " + rehabCost + ". Total Investment: " + totalInvestment + ". Down payment: " + downPaymentPercent + ". Rehab Interest Rate: " + rehabInterestRate + "."
   var flipStrategy = "If the exit strategy is a sale, see metrics below: "
-  var flipMetrics = "Post Rehab Value: " + postRehabPrice + ". Equity Generated: " + equityGenerated + ". Profit: " + saleProfit
+  var flipMetrics = "Post Rehab Value: " + postRehabPrice + ". Equity Generated: " + equityGenerated + ". Profit: $" + saleProfit
   var rentalStrategy = "If the exit strategy is a rental, see metrics below: "
   var rentalMetrics1 = "Monthly Income: " + effectiveMonthlyRent + "."
   var rentalMetrics2 = "Monthly Expenses: " + totalMonthlyExpenses + "."
@@ -286,6 +288,8 @@ function AnalyzeDeal(e) {
   var rentalMonthlyCashFlow = "Monthly cash flow is $" + monthlyCashFlow
 
   var metrics1 = document.createTextNode(metricsblurb1)
+  document.createElement("br")
+  document.createElement("br")
   var metrics2 = document.createTextNode(flipStrategy)
   var metrics3 = document.createTextNode(flipMetrics)
   var metrics4 = document.createTextNode(rentalStrategy)
@@ -295,14 +299,20 @@ function AnalyzeDeal(e) {
   var metrics8 = document.createTextNode(rentalMonthlyCashFlow)
 
   metricsDiv.appendChild(metrics1)
-  document.createElement("br")
+
   metricsDiv.appendChild(metrics2)
+  document.createElement("br")
   metricsDiv.appendChild(metrics3)
   document.createElement("br")
+  document.createElement("br")
   metricsDiv.appendChild(metrics4)
+  document.createElement("br")
   metricsDiv.appendChild(metrics5)
+  document.createElement("br")
   metricsDiv.appendChild(metrics6)
+  document.createElement("br")
   metricsDiv.appendChild(metrics7)
+  document.createElement("br")
   metricsDiv.appendChild(metrics8)
   document.createElement("br")
 

@@ -240,7 +240,7 @@ function AnalyzeDeal(e) {
   var monthlyHoa = (annualHoa / 12).toFixed(2);
 
   var effectiveMonthlyRent = (0.97 * monthlyRent).toFixed(2); // 3% for rental loss
-  var monthlyManagementFees = 100;
+  var monthlyManagementFees = 50;
 
   var startingBalance = hardMoneyLoanAmount;
   var refinanceInterestRateDec = refinanceInterestRate / 100;
@@ -340,11 +340,11 @@ function AnalyzeDeal(e) {
     "%. ";
   var flipStrategy = "If the exit strategy is a sale, see metrics below: ";
   var flipMetrics =
-    "Post Rehab Value: $" +
+    "Post Rehab Value = $" +
     postRehabPrice +
-    ". Equity Generated: $" +
+    ". Equity Generated = $" +
     equityGenerated +
-    ". Profit: $" +
+    ". Sale Profit = $" +
     saleProfit +
     ". ";
   var flipMetrics2 =
@@ -355,8 +355,8 @@ function AnalyzeDeal(e) {
     ". Cash Out = $" +
     (saleProfit + hardMoneyDownPaymentAmount);
   var rentalStrategy = "If the exit strategy is a rental, see metrics below: ";
-  var rentalMetrics1 = "Monthly Income: $" + effectiveMonthlyRent + ".";
-  var rentalMetrics2 = "Monthly Expenses: $" + totalMonthlyExpenses + ".";
+  var rentalMetrics1 = "Monthly Income = $" + effectiveMonthlyRent + ".";
+  var rentalMetrics2 = "Monthly Expenses = $" + totalMonthlyExpenses + ".";
   var rentalExpenses =
     "Mortgage: " +
     refiMonthlyPayment +
@@ -366,7 +366,7 @@ function AnalyzeDeal(e) {
     monthlyInsurance +
     ". HOA Fees: " +
     monthlyHoa +
-    ". Management Fees: " +
+    ". Mgmt Fees: " +
     monthlyManagementFees +
     ".";
   var rentalMonthlyCashFlow =

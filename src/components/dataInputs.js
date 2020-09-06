@@ -274,7 +274,8 @@ function AnalyzeDeal(e) {
   blurbDiv.appendChild(blurb1)
   blurbDiv.appendChild(document.createElement("br"))
   blurbDiv.appendChild(blurb2)
-  
+  blurbDiv.appendChild(document.createElement("br"))
+
 
   var metricsDiv = document.getElementById("metrics")
   

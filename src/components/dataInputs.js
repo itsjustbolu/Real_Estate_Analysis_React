@@ -243,8 +243,8 @@ function AnalyzeDeal(e) {
   var refinanceTermMonths = refinanceTerm * 12 // in months
   var monthlyRefiInterestRate = refinanceInterestRateDec / 12
   var powerCalc = Math.pow((1 + monthlyRefiInterestRate), refinanceTermMonths)
-  var refiMonthlyPayment = startingBalance * ((monthlyRefiInterestRate * (1 + powerCalc))/(powerCalc - 1))
-  var totalMonthlyExpenses = refiMonthlyPayment + monthlyTaxes + monthlyInsurance + monthlyHoa + monthlyManagementFees
+  var refiMonthlyPayment = (startingBalance * ((monthlyRefiInterestRate * (1 + powerCalc))/(powerCalc - 1))).toFixed(2)
+  var totalMonthlyExpenses = Number(refiMonthlyPayment) + Number(monthlyTaxes) + Number(monthlyInsurance) + Number(monthlyHoa) + Number(monthlyManagementFees)
 
   var monthlyCashFlow = effectiveMonthlyRent - (refiMonthlyPayment + monthlyTaxes + monthlyInsurance + monthlyHoa + monthlyManagementFees)
   console.log("loan amt: ", hardMoneyLoanAmount)
@@ -264,7 +264,7 @@ function AnalyzeDeal(e) {
 
   var blurbDiv = document.getElementById("blurb")
   var propBlurb1 = "A " + propType + " located at " + propAddress + ", " + propCity + ", " + propState + " "+ propZip + " , built in " + propBuilt + ". This home is " + homeAge + " years old, and has " + propBedrooms + " bedrooms, " + propBaths + " bathrooms, " + propSize + " sq ft, " + propGarage + " car garage, on a " + propLotAcres + " acre lot." 
-  var propBlurb2 = " The asking price for this property is " + propAskingPrice + "."
+  var propBlurb2 = " The asking price for this property is $" + propAskingPrice + "."
 
   var blurb1 = document.createTextNode(propBlurb1)
   document.createElement("br")
@@ -279,18 +279,16 @@ function AnalyzeDeal(e) {
 
   var metricsDiv = document.getElementById("metrics")
   
-  var metricsblurb1 = "Purchase price: " + purchasePrice + ". Rehab Cost: " + rehabCost + ". Total Investment: " + totalInvestment + ". Down payment: " + downPaymentPercent + ". Rehab Interest Rate: " + rehabInterestRate + "."
+  var metricsblurb1 = "Purchase price: " + purchasePrice + ". Rehab Cost: " + rehabCost + ". Total Investment: " + totalInvestment + ". Down payment: " + downPaymentPercent + "%. Rehab Interest Rate: " + rehabInterestRate + "%. "
   var flipStrategy = "If the exit strategy is a sale, see metrics below: "
-  var flipMetrics = "Post Rehab Value: " + postRehabPrice + ". Equity Generated: " + equityGenerated + ". Profit: $" + saleProfit
+  var flipMetrics = "Post Rehab Value: $" + postRehabPrice + ". Equity Generated: $" + equityGenerated + ". Profit: $" + saleProfit + ". "
   var rentalStrategy = "If the exit strategy is a rental, see metrics below: "
-  var rentalMetrics1 = "Monthly Income: " + effectiveMonthlyRent + "."
-  var rentalMetrics2 = "Monthly Expenses: " + totalMonthlyExpenses + "."
+  var rentalMetrics1 = "Monthly Income: $" + effectiveMonthlyRent + "."
+  var rentalMetrics2 = "Monthly Expenses: $" + totalMonthlyExpenses + "."
   var rentalExpenses = "Mortgage: " + refiMonthlyPayment + ". Taxes: " + monthlyTaxes + ". Insurance: " + monthlyInsurance + ". HOA Fees: " + monthlyHoa + ". Management Fees: " + monthlyManagementFees + "."
   var rentalMonthlyCashFlow = "Monthly cash flow is $" + monthlyCashFlow
 
   var metrics1 = document.createTextNode(metricsblurb1)
-  document.createElement("br")
-  document.createElement("br")
   var metrics2 = document.createTextNode(flipStrategy)
   var metrics3 = document.createTextNode(flipMetrics)
   var metrics4 = document.createTextNode(rentalStrategy)
@@ -300,22 +298,22 @@ function AnalyzeDeal(e) {
   var metrics8 = document.createTextNode(rentalMonthlyCashFlow)
 
   metricsDiv.appendChild(metrics1)
-
+  metricsDiv.appendChild(document.createElement("br"))
   metricsDiv.appendChild(metrics2)
-  document.createElement("br")
+  metricsDiv.appendChild(document.createElement("br"))
   metricsDiv.appendChild(metrics3)
-  document.createElement("br")
-  document.createElement("br")
+  metricsDiv.appendChild(document.createElement("br"))
+  metricsDiv.appendChild(document.createElement("br"))
   metricsDiv.appendChild(metrics4)
-  document.createElement("br")
+  metricsDiv.appendChild(document.createElement("br"))
   metricsDiv.appendChild(metrics5)
-  document.createElement("br")
+  metricsDiv.appendChild(document.createElement("br"))
   metricsDiv.appendChild(metrics6)
-  document.createElement("br")
+  metricsDiv.appendChild(document.createElement("br"))
   metricsDiv.appendChild(metrics7)
-  document.createElement("br")
+  metricsDiv.appendChild(document.createElement("br"))
   metricsDiv.appendChild(metrics8)
-  document.createElement("br")
+  metricsDiv.appendChild(document.createElement("br"))
 
 
 

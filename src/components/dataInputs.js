@@ -55,20 +55,17 @@ const DataInputs = () => {
         </Form.Row>
 
         <Form.Row>
-          <Form.Group as={Col} controlId="house_size_sqft">
+          <Form.Group as={Col} controlId="house_size_sq_ft">
             <Form.Label>Size</Form.Label>
             <Form.Control type="number" />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="lot_size_sqft">
+          <Form.Group as={Col} controlId="lot_size_sq_ft">
             <Form.Label>Lot Size (sq ft)</Form.Label>
             <Form.Control type="number" />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="lot_size_ac">
-            <Form.Label>Lot Size (ac)</Form.Label>
-            <Form.Control type="number" />
-          </Form.Group>
+
         </Form.Row>
 
         <Form.Row>
@@ -111,7 +108,7 @@ const DataInputs = () => {
             <Form.Control type="number" />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="downpayment_percent">
+          <Form.Group as={Col} controlId="down_payment_percent">
             <Form.Label>Downpayment %</Form.Label>
             <Form.Control type="number" />
           </Form.Group>
@@ -123,20 +120,13 @@ const DataInputs = () => {
             <Form.Control type="number" />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="rehab_loan_term">
-            <Form.Label>Rehab Loan Term</Form.Label>
-            <Form.Control type="number" />
-          </Form.Group>
+         
 
           <Form.Group as={Col} controlId="post_rehab_price">
             <Form.Label>Post Rehab Price</Form.Label>
             <Form.Control type="number" />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="rehab_duration">
-            <Form.Label>Rehab Duration</Form.Label>
-            <Form.Control type="number" />
-          </Form.Group>
         </Form.Row>
 
         <Form.Row>
@@ -161,10 +151,31 @@ const DataInputs = () => {
           </Form.Group>
         </Form.Row>
 
+        <Form.Row>
+          <Form.Group as={Col} controlId="refinance_interest_rate">
+            <Form.Label>Refi Interest Rate</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="refinance_term">
+            <Form.Label>Refi Term (yrs)</Form.Label>
+            <Form.Control type="number" />
+          </Form.Group>
+
+
+        </Form.Row>
+
         <Button onClick={AnalyzeDeal} variant="primary" type="submit">
           Analyze Deal
         </Button>
       </Form>
+
+      {/* Display results */}
+      <div id="results"></div>
+      <div id="blurb"></div>
+      <div id="metrics"></div>
+
+
     </div>
   );
 };
@@ -174,47 +185,126 @@ function AnalyzeDeal(e) {
 
   // Property Details Variables
   var propAddress = document.getElementById("address").value;
-  // var propCity = document.getElementById("city").value;
-  // var propState = document.getElementById("state").value;
-  // var propZip = document.getElementById("zip").value;
-  // var propBedrooms = document.getElementById("bedrooms").value;
-  // var propBaths = document.getElementById("baths").value;
-  // var propGarage = document.getElementById("garage").value;
-  // var propSize = document.getElementById("house_size_sq_ft").value;
-  // var propLot = document.getElementById("lot_size_sq_ft").value;
-  // var propBuilt = document.getElementById("year_built").value;
-  // var propType = document.getElementById("property_type").value;
-  // var propAskingPrice = document.getElementById("asking_price").value;
+  var propCity = document.getElementById("city").value;
+  var propState = document.getElementById("state").value;
+  var propZip = document.getElementById("zip").value;
+  var propBedrooms = document.getElementById("bedrooms").value;
+  var propBaths = document.getElementById("baths").value;
+  var propGarage = document.getElementById("garage").value;
+  var propSize = Number(document.getElementById("house_size_sq_ft").value);
+  var propLotSqFt = Number(document.getElementById("lot_size_sq_ft").value);
+  var propBuilt = Number(document.getElementById("year_built").value);
+  var propType = document.getElementById("property_type").value;
+  var propAskingPrice = document.getElementById("asking_price").value;
 
-  // // Financial Analysis Variables
-  // var purchasePrice = document.getElementById("purchase_price");
-  // var rehabCost = document.getElementById("rehab_cost");
-  // var downpaymentPercent = document.getElementById("downpayment_percent");
-  // var rehabInterestRate = document.getElementById("rehab_interest_rate");
+  // Financial Analysis Variables
+  var purchasePrice = Number(document.getElementById("purchase_price").value);
+  var rehabCost = Number(document.getElementById("rehab_cost").value);
+  var downPaymentPercent = Number(document.getElementById("down_payment_percent").value);
+  var rehabInterestRate = Number(document.getElementById("rehab_interest_rate").value);
   // var rehabLoanTerm = document.getElementById("rehab_loan_term");
-  // var postRehabPrice = document.getElementById("post_rehab_price");
+  var postRehabPrice = Number(document.getElementById("post_rehab_price").value);
   // var rehabDuration = document.getElementById("rehab_duration");
-  // var monthlyRent = document.getElementById("monthly_rent");
-  // var annualTaxes = document.getElementById("annual_taxes");
-  // var annualInsurance = document.getElementById("annual_insurance");
-  // var annualHoa = document.getElementById("annual_hoa");
-
-  // make sure button click is properly binded to function
+  var monthlyRent = Number(document.getElementById("monthly_rent").value);
+  var annualTaxes = Number(document.getElementById("annual_taxes").value);
+  var annualInsurance = Number(document.getElementById("annual_insurance").value);
+  var annualHoa = Number(document.getElementById("annual_hoa").value);
+  var refinanceInterestRate = Number(document.getElementById("refinance_interest_rate").value)
+  var refinanceTerm = Number(document.getElementById("refinance_term").value)
+  // make sure button click is properly bind to function
   console.log("link was clicked");
-  console.log(propAddress);
+  
+  // Calculations: Sale and Rental
+  var d = new Date()
+  var homeAge = d.getFullYear - propBuilt
+  var propLotAcres = (propLotSqFt / 43560).toFixed(2)
+  var totalInvestment = purchasePrice + rehabCost
+  var equityGenerated = postRehabPrice - totalInvestment
+  var hardMoneyDownPaymentAmount = (downPaymentPercent/100) * totalInvestment
+  var hardMoneyLoanAmount = totalInvestment - hardMoneyDownPaymentAmount
+  var hardMoneyMonthlyPayment = ((rehabInterestRate / 100) * hardMoneyLoanAmount) / 12
 
+      // if strategy is an outright sale
+  var realtorCommission = 0.06 * hardMoneyLoanAmount
+  var saleClosingCost = 0.03 * postRehabPrice
+  var saleProfit = postRehabPrice - (hardMoneyLoanAmount + realtorCommission + saleClosingCost) - hardMoneyDownPaymentAmount
+
+      // if strategy is a refinance rental
+  var monthlyTaxes = (annualTaxes / 12).toFixed(2)
+  var monthlyInsurance = (annualInsurance / 12).toFixed(2)
+  var monthlyHoa = (annualHoa / 12).toFixed(2)
+
+  var effectiveMonthlyRent = (0.97 * monthlyRent).toFixed(2)  // 3% for rental loss
+  var monthlyManagementFees = 100
+
+
+  var startingBalance = hardMoneyLoanAmount 
+  var refinanceInterestRateDec = refinanceInterestRate / 100
+  var refinanceTermMonths = refinanceTerm * 12 // in months
+  var monthlyRefiInterestRate = refinanceInterestRateDec / 12
+  var powerCalc = Math.pow((1 + monthlyRefiInterestRate), refinanceTermMonths)
+  var refiMonthlyPayment = startingBalance * ((monthlyRefiInterestRate * (1 + powerCalc))/(powerCalc - 1))
+  var totalMonthlyExpenses = refiMonthlyPayment + monthlyTaxes + monthlyInsurance + monthlyHoa + monthlyManagementFees
+
+  var monthlyCashFlow = effectiveMonthlyRent - (refiMonthlyPayment + monthlyTaxes + monthlyInsurance + monthlyHoa + monthlyManagementFees)
+  console.log("loan amt: ", hardMoneyLoanAmount)
+  console.log("equity generated: ", equityGenerated);
+  console.log("hard money monthly: ", hardMoneyMonthlyPayment);
+  console.log("sale profit: ",saleProfit);
+  console.log("refi monthly payment: ",refiMonthlyPayment);
+  console.log("rental monthly cash: ", monthlyCashFlow);
 
   // remove form and display results
   var mainForm =  document.getElementById("main_form")
   mainForm.style.display = "none"
 
-  const mainResultsDiv = document.createElement("div")
+  var resultsDiv = document.getElementById("results")
+  var resultsTitle = document.createTextNode("RESULTS")
+  resultsDiv.appendChild(resultsTitle)
+
+  var blurbDiv = document.getElementById("blurb")
+  var propBlurb1 = "A " + propType + " located at " + propAddress + ", " + propCity + ", " + propState + " "+ propZip + " , built in " + propBuilt + ". This home is " + homeAge + " years old, and has " + propBedrooms + " bedrooms, " + propBaths + " bathrooms, " + propSize + " sq ft, " + propGarage + " car garage, on a " + propLotAcres + " acre lot." 
+  var propBlurb2 = " The asking price for this property is " + propAskingPrice + "."
+
+  var blurb1 = document.createTextNode(propBlurb1)
+  var blurb2 = document.createTextNode(propBlurb2)
+
+  blurbDiv.appendChild(blurb1)
+  document.createElement("br")
+  blurbDiv.appendChild(blurb2)
+  document.createElement("br")
+
+  var metricsDiv = document.getElementById("metrics")
   
+  var metricsblurb1 = "Purchase price: " + purchasePrice + ". Rehab Cost: " + rehabCost + ". Total Investment: " + totalInvestment + ". Down payment: " + downPaymentPercent + ". Rehab Interest Rate: " + rehabInterestRate + "."
+  var flipStrategy = "If the exit strategy is a sale, see metrics below: "
+  var flipMetrics = "Post Rehab Value: " + postRehabPrice + ". Equity Generated: " + equityGenerated + ". Profit: " + saleProfit
+  var rentalStrategy = "If the exit strategy is a rental, see metrics below: "
+  var rentalMetrics1 = "Monthly Income: " + effectiveMonthlyRent + "."
+  var rentalMetrics2 = "Monthly Expenses: " + totalMonthlyExpenses + "."
+  var rentalExpenses = "Mortgage: " + refiMonthlyPayment + ". Taxes: " + monthlyTaxes + ". Insurance: " + monthlyInsurance + ". HOA Fees: " + monthlyHoa + ". Management Fees: " + monthlyManagementFees + "."
+  var rentalMonthlyCashFlow = "Monthly cash flow is $" + monthlyCashFlow
 
+  var metrics1 = document.createTextNode(metricsblurb1)
+  var metrics2 = document.createTextNode(flipStrategy)
+  var metrics3 = document.createTextNode(flipMetrics)
+  var metrics4 = document.createTextNode(rentalStrategy)
+  var metrics5 = document.createTextNode(rentalMetrics1)
+  var metrics6 = document.createTextNode(rentalMetrics2)
+  var metrics7 = document.createTextNode(rentalExpenses)
+  var metrics8 = document.createTextNode(rentalMonthlyCashFlow)
 
-  console.log("div created")
-
-  // mainResultsDiv.appendChild(addressResult)
+  metricsDiv.appendChild(metrics1)
+  document.createElement("br")
+  metricsDiv.appendChild(metrics2)
+  metricsDiv.appendChild(metrics3)
+  document.createElement("br")
+  metricsDiv.appendChild(metrics4)
+  metricsDiv.appendChild(metrics5)
+  metricsDiv.appendChild(metrics6)
+  metricsDiv.appendChild(metrics7)
+  metricsDiv.appendChild(metrics8)
+  document.createElement("br")
 
 
 

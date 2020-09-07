@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/Real_Estate_Analysis_React/static/css/main.5f361e03.chunk.css",
+    "main.js": "/Real_Estate_Analysis_React/static/js/main.21698219.chunk.js",
+    "main.js.map": "/Real_Estate_Analysis_React/static/js/main.21698219.chunk.js.map",
+    "runtime-main.js": "/Real_Estate_Analysis_React/static/js/runtime-main.7a95b226.js",
+    "runtime-main.js.map": "/Real_Estate_Analysis_React/static/js/runtime-main.7a95b226.js.map",
+    "static/js/2.2a68dc31.chunk.js": "/Real_Estate_Analysis_React/static/js/2.2a68dc31.chunk.js",
+    "static/js/2.2a68dc31.chunk.js.map": "/Real_Estate_Analysis_React/static/js/2.2a68dc31.chunk.js.map",
+    "static/js/3.86a96741.chunk.js": "/Real_Estate_Analysis_React/static/js/3.86a96741.chunk.js",
+    "static/js/3.86a96741.chunk.js.map": "/Real_Estate_Analysis_React/static/js/3.86a96741.chunk.js.map",
+    "static/js/4.69015e24.chunk.js": "/Real_Estate_Analysis_React/static/js/4.69015e24.chunk.js",
+    "static/js/4.69015e24.chunk.js.map": "/Real_Estate_Analysis_React/static/js/4.69015e24.chunk.js.map",
+    "static/js/5.8522e511.chunk.js": "/Real_Estate_Analysis_React/static/js/5.8522e511.chunk.js",
+    "static/js/5.8522e511.chunk.js.map": "/Real_Estate_Analysis_React/static/js/5.8522e511.chunk.js.map",
+    "index.html": "/Real_Estate_Analysis_React/index.html",
+    "precache-manifest.2aadf86f6addecdd139412f6f0da0ec9.js": "/Real_Estate_Analysis_React/precache-manifest.2aadf86f6addecdd139412f6f0da0ec9.js",
+    "service-worker.js": "/Real_Estate_Analysis_React/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/Real_Estate_Analysis_React/static/css/main.5f361e03.chunk.css.map",
+    "static/js/3.86a96741.chunk.js.LICENSE.txt": "/Real_Estate_Analysis_React/static/js/3.86a96741.chunk.js.LICENSE.txt",
+    "static/js/4.69015e24.chunk.js.LICENSE.txt": "/Real_Estate_Analysis_React/static/js/4.69015e24.chunk.js.LICENSE.txt",
+    "static/js/5.8522e511.chunk.js.LICENSE.txt": "/Real_Estate_Analysis_React/static/js/5.8522e511.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/Real_Estate_Analysis_React/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7a95b226.js",
+    "static/js/3.86a96741.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.21698219.chunk.js"
+  ]
+}
